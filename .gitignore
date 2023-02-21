@@ -131,4 +131,7 @@ dist
 
 # Java
 java/bin/
+
+# ZIP
+html/**/*.zip
 java/**/*.zip

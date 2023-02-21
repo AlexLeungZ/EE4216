@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+		<style>
+			#box {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -80px;
+				margin-top: -100px;
+			}
+			
+			#box canvas {
+				border:1px solid black;
+			}
+		</style>
+        <script type="text/javascript">
+
+            //Global Variables
+            var content = [false, false, false, false, false, false, false, false, false];
+            var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+            var turn = 0;
+			var squaresFilled = 0;
+            
+            //Game methods
+            function canvasClicked(e) {
+                var canvas = e.target;
+                var index = canvas.dataset.index;   //html5 dataset api
+                var ctx = canvas.getContext("2d");
+
+                if (content[index] === false) {
+                    if (turn % 2 == 0) {
+                        ctx.beginPath();
+                        ctx.moveTo(10, 10);
+                        ctx.lineTo(40, 40);
+                        ctx.moveTo(40, 10);
+                        ctx.lineTo(10, 40);
+                        ctx.stroke();
+                        ctx.closePath();
+                        content[index] = 'X';
+                    } else {
+                        ctx.beginPath();
+                        ctx.arc(25, 25, 20, 0, Math.PI * 2, true);		// see http://www.w3schools.com/tags/canvas_arc.asp
+                        ctx.stroke();
+                        ctx.closePath();
+                        content[index] = 'O';
+                    }
+
+                    turn++;
+                    squaresFilled++;
+                    checkForWinners(content[index]);
+
+                    if (squaresFilled == 9) {
+                        alert("THE GAME IS OVER!");
+                        location.reload(true);
+                    }
+                } else {
+                    alert("THAT SPACE IS ALREADY OCCUPIED!");
+                }
+
+            }
+
+            function checkForWinners(symbol) {
+                for (var i = 0; i < winningCombinations.length; i++) {
+                    if (content[winningCombinations[i][0]] == symbol && content[winningCombinations[i][1]] == symbol && content[winningCombinations[i][2]] == symbol) {
+                        alert(symbol + " WON!");
+                        if (confirm("PLAY AGAIN?"))
+                            location.reload(true);
+                    }
+                }
+            }
+
+            // Attach event listener
+            window.onload = function() {
+                var box = document.getElementById("box");
+                box.addEventListener('click', canvasClicked);
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id ="box">
+            <h3>SIMPLE TIC - TAC - TOE!</h3>
+            <canvas id="canvas0" data-index="0" width="50" height="50"></canvas>
+            <canvas id="canvas1" data-index="1" width="50" height="50"></canvas>
+            <canvas id="canvas2" data-index="2" width="50" height="50"></canvas><br/>
+            <canvas id="canvas3" data-index="3" width="50" height="50"></canvas>
+            <canvas id="canvas4" data-index="4" width="50" height="50"></canvas>
+            <canvas id="canvas5" data-index="5" width="50" height="50"></canvas><br/>
+            <canvas id="canvas6" data-index="6" width="50" height="50"></canvas>
+            <canvas id="canvas7" data-index="7" width="50" height="50"></canvas>
+            <canvas id="canvas8" data-index="8" width="50" height="50"></canvas>
+        </div>
+    </body>
+</html>
+
+

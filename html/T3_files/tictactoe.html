@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+		<style>
+			#box {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: -80px;
+				margin-top: -100px;
+			}
+			
+			#box canvas {
+				border:1px solid black;
+			}
+		</style>
+        <script type="text/javascript">
+
+            //Global Variables
+            var content = [false, false, false, false, false, false, false, false, false];
+            var winningCombinations = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
+            var turn = 0;
+			var squaresFilled = 0;
+            
+            //Game methods
+            function canvasClicked(event) {
+                
+                // complete this method
+
+            }
+
+            function checkForWinners(symbol) {
+                for (var i = 0; i < winningCombinations.length; i++) {
+                    if (content[winningCombinations[i][0]] == symbol && content[winningCombinations[i][1]] == symbol && content[winningCombinations[i][2]] == symbol) {
+                        alert(symbol + " WON!");
+                        if (confirm("PLAY AGAIN?"))
+                            location.reload(true);
+                    }
+                }
+            }
+
+            // Attach event listener
+            window.onload = function() {
+                var box = document.getElementById("box");
+                box.addEventListener('click', canvasClicked);
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id ="box">
+            <h3>SIMPLE TIC - TAC - TOE!</h3>
+            <canvas id="canvas0" data-index="0" width="50" height="50"></canvas>
+            <canvas id="canvas1" data-index="1" width="50" height="50"></canvas>
+            <canvas id="canvas2" data-index="2" width="50" height="50"></canvas><br/>
+            <canvas id="canvas3" data-index="3" width="50" height="50"></canvas>
+            <canvas id="canvas4" data-index="4" width="50" height="50"></canvas>
+            <canvas id="canvas5" data-index="5" width="50" height="50"></canvas><br/>
+            <canvas id="canvas6" data-index="6" width="50" height="50"></canvas>
+            <canvas id="canvas7" data-index="7" width="50" height="50"></canvas>
+            <canvas id="canvas8" data-index="8" width="50" height="50"></canvas>
+        </div>
+    </body>
+</html>
+
+

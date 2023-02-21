@@ -1,0 +1,32 @@
+/* 
+    Document   : selector.css
+    Created on : Sep 20, 2013, 3:40:07 PM
+    Author     : vanting
+    Description: learning to apply different selectors
+        
+*/
+
+h1, h2 {
+  color: blue;
+}
+
+p strong {
+  color: orange;
+}
+
+ul ul li, ul ul li a {
+  color: green;
+}
+
+table tr:first-child td {
+  color: darkviolet;
+}
+
+.required {
+  color: red;
+}
+
+#twitter {
+  color: cyan;
+}
+

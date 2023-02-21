@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Color Canvas</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <div id="mygroup">
+            <div class="example">
+                <canvas id="mycanvas" width="400" height="200" style="border: 2px solid black"></canvas> <br>
+            </div>
+            <div>
+                <h3>R</h3>
+                <input type="range" id="red" name="red" value="0" min="0" max="255">
+                <output for="red" id="red_output">0</output>
+            </div>
+            <div>
+                <h3>G</h3>
+                <input type="range" id="green" name="green" value="0" min="0" max="255">
+                <output for="green" id="green_output">0</output>
+            </div>
+            <div>
+                <h3>B</h3>
+                <input type="range" id="blue" name="blue" value="0" min="0" max="255">
+                <output for="blue" id="blue_output">0</output>
+            </div>
+        </div>
+        <script>
+		
+            (function() {
+				// the closure make the following code executed after document completely loaded 
+                var myGroup = document.getElementById("mygroup");
+                var ctx = document.getElementById('mycanvas').getContext('2d');
+				var red = document.querySelector('#red');
+				var green = document.querySelector('#green');
+				var blue = document.querySelector('#blue');
+				var red_output = document.querySelector('#red_output');
+				var green_output = document.querySelector('#green_output');
+				var blue_output = document.querySelector('#blue_output');
+
+                if ("oninput" in myGroup) {
+                    myGroup.addEventListener("input", function() {
+                        red_output.value = red.value;
+                        green_output.value = green.value;
+                        blue_output.value = blue.value;
+                        ctx.fillStyle = "rgb(" + red.value + ',' + green.value + ',' + blue.value + ')';
+                        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+                    });
+                }
+				
+				/* equivalent to above
+                myGroup.oninput = function() {
+                        ...
+						...
+                    };
+                */
+            })();
+        </script>
+    </body>
+</html>
