@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" href="web.css" />
+	</head>
+
+	<body>
+		<div id="app">
+			<table class="table">
+				<thead>
+					<th v-on:click="active = key; sortData()" v-for="(value, key) in columns">
+						{{value}}
+						<span v-if="key == active" v-bind:class="arrow"> </span>
+					</th>
+				</thead>
+				<tbody>
+					<tr v-for="row in rows">
+						<td v-for="data in row">{{data}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script src="web.js"></script>
+	</body>
+</html>
