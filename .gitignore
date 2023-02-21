@@ -128,3 +128,7 @@ dist
 
 # VS code settings
 .vscode/
+
+# Java
+java/bin/
+java/**/*.zip
