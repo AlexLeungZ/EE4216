@@ -20,13 +20,6 @@ var app = new Vue({
 		],
 	},
 	methods: {
-		async getData() {
-			const response = await fetch("https://jsonplaceholder.typicode.com/users");
-			const json = await response.json();
-
-			const subset = json.map(({ id, name, phone }) => ({ id, name, phone }));
-			this.rows = subset;
-		},
 		sortData() {
 			prop = this.active;
 			this.rows.sort((a, b) => this.asc * (a[prop] > b[prop] ? -1 : 1));
@@ -35,7 +28,12 @@ var app = new Vue({
 			this.asc = -1 * this.asc;
 		},
 	},
-});
+	// Checkpoint 2
+	beforeCreate: async function () {
+		const response = await fetch("https://jsonplaceholder.typicode.com/users");
+		const json = await response.json();
 
-// Checkpoint 2
-app.getData();
+		const subset = json.map(({ id, name, phone }) => ({ id, name, phone }));
+		this.rows = subset;
+	},
+});
