@@ -1,0 +1,158 @@
+body {
+	height: 100%;
+	font-family: "Dosis", sans-serif;
+	color: black;
+}
+
+/* Backgorund layer 1 */
+.bg {
+	top: 0;
+	bottom: 0;
+	left: -50%;
+	right: -50%;
+	opacity: 0.5;
+	z-index: -1;
+	position: fixed;
+	animation: slide 3s ease-in-out infinite alternate;
+	background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%);
+}
+
+/* Backgorund layer 2 */
+.bg2 {
+	animation-duration: 4s;
+	animation-direction: alternate-reverse;
+}
+
+/* Backgorund layer 3 */
+.bg3 {
+	animation-duration: 5s;
+}
+
+@keyframes slide {
+	0% {
+		transform: translateX(-25%);
+	}
+	100% {
+		transform: translateX(25%);
+	}
+}
+
+span {
+	font-size: 24px;
+}
+
+input {
+	outline-style: none;
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 12px 12px;
+	width: 100px;
+	font-size: 20px;
+}
+
+button {
+	background-color: bisque;
+	border: none;
+	padding: 12px 22px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+
+.instructions,
+.stat,
+.rules {
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+.stat > * {
+	margin: 10px;
+	padding: 30px;
+}
+
+.gameWrapper {
+	margin: 20px;
+	text-align: center;
+	justify-items: center;
+	display: grid;
+}
+
+.gameWrapper > * {
+	margin: 10px;
+}
+
+#gameBody {
+	margin: 20px;
+	align-items: left;
+	justify-items: center;
+	display: grid;
+	width: 70%;
+	row-gap: 1em;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+@media (min-width: 1100px) {
+	#gameBody {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+
+	.frontFace .backFace {
+		max-width: 100%;
+		max-height: 100%;
+	}
+}
+
+#gameBody img {
+	width: 120px;
+	height: auto;
+	backface-visibility: hidden;
+}
+
+.hidden {
+	display: none !important;
+}
+
+.card {
+	background-color: transparent;
+	perspective: 1000px;
+}
+
+.content {
+	display: grid;
+	text-align: center;
+	transition: transform 0.8s;
+	transform-style: preserve-3d;
+}
+
+.content > * {
+	grid-area: 1 / 1;
+}
+
+.card .flip {
+	transform: rotateY(180deg);
+}
+
+.frontFace .backFace {
+	max-width: 60%;
+	max-height: 60%;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+}
+
+.backFace {
+	transform: rotateY(180deg);
+}
+
+#gameEnds {
+	margin: 20px;
+	text-align: center;
+	justify-items: center;
+	display: grid;
+}
+
+#gameEnds > * {
+	margin: 10px;
+}

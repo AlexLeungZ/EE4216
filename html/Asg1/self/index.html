@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Simple Memory Training Game</title>
+
+		<meta charset="UTF-8" />
+		<meta name="description" content="Simple Memory Training Game." />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<!-- CSS Styles -->
+		<link rel="stylesheet" href="style.css" />
+
+		<!-- Google Front Dosis -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;600&display=swap" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="bg"></div>
+		<div class="bg bg2"></div>
+		<div class="bg bg3"></div>
+		<div>
+			<!-- Game Title -->
+			<div class="instructions">
+				<h1>EE4216 Assignment 1 - Javascript Card Game</h1>
+				<span>Find all the triples in the cards.</span>
+			</div>
+
+			<!-- Game Rules -->
+			<div class="rules">
+				<h2>Rules</h2>
+				<span>For every pair matched you will gain 3 points.</span>
+				<span>For every wrong pair you will lose 1 points.</span>
+			</div>
+
+			<!-- Game staticstic -->
+			<div class="stat">
+				<span id="flips">Card(s) flipped: 0</span>
+				<span id="score">Current score: 0</span>
+				<span id="timer">Time elapsed: 00:00:00</span>
+			</div>
+
+			<!-- Game Board -->
+			<div class="gameWrapper">
+				<input id="numTri" placeholder="Number of Triples" />
+				<button onclick="start()">Start Game</button>
+				<div id="gameBody"></div>
+			</div>
+
+			<!-- Final Score display -->
+			<section id="gameEnds" style="visibility: hidden">
+				<span id="finalScore"></span>
+				<span>Congratulations!</span>
+			</section>
+		</div>
+
+		<!-- JS Script -->
+		<script src="script.js"></script>
+	</body>
+</html>

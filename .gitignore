@@ -135,3 +135,7 @@ java/bin/
 # ZIP
 html/**/*.zip
 java/**/*.zip
+
+# HTML
+html/Asg1/co1
+html/Asg1/co2
