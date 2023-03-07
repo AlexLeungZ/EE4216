@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<!--
+
+Student Name:
+Student ID:
+
+Question 3.
+
+Create a demo for the bubble sort. Write Vue2 script to do the following tasks:
+
+    1. Create and mount an Vue instance to the div with id "app".
+    2. Initialize an array of numbers from 1 to 9 in the data model.
+    3. List out the numbers from left to right under the <h1> header.
+    4. Shuffle the list when the page is reloaded or the Vue instance is created.
+    5. Insert a 'Sort' button under the list.
+    6. Add an event handler to the button - click to sort the list in ascending order.
+
+All JS code should be written as part of the Vue instance.
+
+-->
+
+<html>
+    <head>
+        <title>Q3 - Vue Bubble Sort </title>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <style>
+            /* this css renders list items in a row instead of stacking up */
+            ul {
+                display: flex;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+            li {
+                font-size: 24px;
+                margin: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Bubble Sort Demo</h1>
+            <ul>
+                <li v-for="number in numbers">{{ number }}</li>
+            </ul>
+            <button @click="sortNumbers">Sort</button>
+        </div>
+
+        <script>
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    numbers: [1,2,3,4,5,6,7,8,9]
+                },
+                created: function () {
+					// Fisher–Yates shuffle
+                    for (let i = this.numbers.length - 1; i > 0; i--) {
+                        let j = Math.floor(Math.random() * (i + 1));
+                        [this.numbers[i], this.numbers[j]] = [this.numbers[j], this.numbers[i]];
+                    }
+                },
+                methods: {
+                    sortNumbers() {
+                        for (let i = 0; i < this.numbers.length; i++) {
+                            for (let j = 0; j < this.numbers.length - i - 1; j++) {
+                                if (this.numbers[j] > this.numbers[j + 1]) {
+                                    let temp = this.numbers[j];
+                                    Vue.set(this.numbers, j, this.numbers[j + 1]);
+                                    Vue.set(this.numbers, j + 1, temp);
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

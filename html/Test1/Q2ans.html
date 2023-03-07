@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<!--
+
+Student Name:
+Student ID:
+
+Question 2.
+
+Write JavaScript in the script tag to insert four <div> elements into the HTML body. 
+The following requirements must be done using JavaScript.
+
+    1. The div elements have an id attribute from 'block1' to 'block4'.
+    2. The div elements have a text content from 'Block 1' to 'Block 4'.
+    3. The text in the div element is centered vertically and horizontally.
+    4. The size of the div elements is 200x200 pixels.
+    5. The div elements are placed in the four corners of the page.
+    6. The color of the four div elements are red, green, blue and yellow, respectively.
+    7. Swap the colors of two div elements in diagonal corners when one of them is clicked.
+
+-->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Q2 - DOM Manipulation</title>
+    </head>
+    <body>
+
+    </body>
+    <script>
+
+        const colors = ["red", "green", "blue", "yellow"];
+        const divs = [];
+
+        for (let i = 0; i < 4; i++) {
+            const div = document.createElement("div");
+            div.id = "block" + (i + 1);
+            div.style.backgroundColor = colors[i];
+            div.style.width = "200px";
+            div.style.height = "200px";
+            div.style.position = "absolute";
+            div.style.top = i < 2 ? "0" : "";
+            div.style.bottom = i >= 2 ? "0" : "";
+            div.style.left = i % 2 === 0 ? "0" : "";
+            div.style.right = i % 2 !== 0 ? "0" : "";
+            div.style.display = "flex";
+            div.style.justifyContent = "center";
+            div.style.alignItems = "center";
+            div.textContent = "Block " + (i + 1);
+            document.body.appendChild(div);
+            divs.push(div);
+        }
+
+        divs[0].onclick = function () {
+            swapColors(divs[0], divs[3]);
+        };
+
+        divs[1].onclick = function () {
+            swapColors(divs[1], divs[2]);
+        };
+
+        divs[2].onclick = function () {
+            swapColors(divs[2], divs[1]);
+        };
+
+        divs[3].onclick = function () {
+            swapColors(divs[3], divs[0]);
+        };
+
+        function swapColors(div1, div2) {
+            const tempColor = div1.style.backgroundColor;
+            div1.style.backgroundColor = div2.style.backgroundColor;
+            div2.style.backgroundColor = tempColor;
+        }
+
+    </script>
+</html>
