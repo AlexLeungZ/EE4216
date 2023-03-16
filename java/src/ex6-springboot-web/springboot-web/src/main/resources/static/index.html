@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Spring Web MVC</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <p>This is the default index page in the root path - http://localhost/spring/web/ </p>
+
+        <p>HTMLController 1 <a href="./welcome1">here</a></p>
+        <p>HTMLController 2 <a href="./welcome2">here</a></p>
+        <p>HTMLController 3 
+            <form action="./welcome3" method="post">
+                <input type="text" name="course" value="EE4216">
+                <input type="submit" value="POST to ./welcome3">
+            </form>
+        </p>
+        <p>HTMLController 4 <a href="./welcome4?id=4&key=5">here</a></p>
+        <br>
+        
+        <p>ModelController 1 <a href="./home/page1">here</a></p>
+        <p>ModelController 2 <a href="./home/page2">here</a></p>
+        <p>ModelController 3 <a href="./home/page3">here</a></p>
+        <p>ModelController 4 <a href="./home/page4?name=Van&msg=This%20message%20is%20mapped%20using%20%40ModelAttribute.">here</a></p>
+        <br>
+        
+        <p>ErrorController 1 <a href="./exception">here</a></p>
+        <p>ErrorController 2 <a href="./unknownurl">here</a></p>
+        <br>
+        
+        <p>RestfulController 1 <a href="./api/status">here</a></p>
+        <br>
+        
+        <p>SessionController - count <a href="./visitor/count">here</a></p>
+        <p>SessionController - reset <a href="./visitor/reset">here</a></p>
+        <br>
+        
+        <p>StudentController 1 <a href="./student/">here</a></p>
+        <br>
+        
+
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Generic Error Page</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"/>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Generic Error Page</h1>
+            <div class="alert alert-danger" role="alert">
+                <p>
+                    <b>
+                        [<span th:text="${status}">status</span>]
+                        <span th:text="${error}">error</span>
+                    </b>
+                </p>
+                <p>Message: <span th:text="${message}">message</span></p>
+                <p>Path: <span th:text="${path}">path</span></p>
+                <p>Timestamp: <span th:text="${timestamp}">timestamp</span></p>
+                <p>Exception: <span th:text="${exception}">exception</span></p>  
+            </div>
+            <p th:text="${trace}">trace</p>
+        </div>
+    </body>
+</html>
