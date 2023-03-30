@@ -20,7 +20,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import EE4216Lab3.springboot.repository.*;
+import EE4216Lab3.springboot.dao.*;
 import EE4216Lab3.springboot.entity.*;;
 
 @RestController
@@ -54,4 +54,14 @@ public class MovieController {
         return jsonWrapper(repository.findById(id));
     }
 
+    @PutMapping("/movies/{id}")
+    public void updateMovie(@PathVariable("id") Integer id, @RequestBody Movie movie) {
+        movie.setId(id);
+        repository.updateById(movie);
+    }
+
+    @DeleteMapping("/movies/{id}")
+    public void deleteById(@PathVariable("id") Integer id) {
+        repository.deleteById(id);
+    }
 }
