@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>EE4216 Test 2</title>
+	</head>
+	<body>
+		<div>
+			<h1>IMDB Movies <span th:text="${studentId}"></span></h1>
+			<table border="1">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Movie Name</th>
+						<th>Year</th>
+						<th>Rank</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="movie : ${movies}">
+						<td th:text="${movie.id}"></td>
+						<td th:text="${movie.name}"></td>
+						<td th:text="${movie.year}"></td>
+						<td th:text="${movie.rank}"></td>
+						<td>
+							<a th:href="@{/test2/movie/json(id=${movie.id})}">JSON</a>
+							<a th:href="@{/test2/movie/xml(id=${movie.id})}">XML</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
