@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Assignment 2</title>
+		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+	</head>
+	<body>
+		<div id="app" class="container">
+			<h1>Todo List</h1>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Item</th>
+						<th>Done</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="row in rows">
+						<td>{{row['id']}}</td>
+
+						<td v-if="row.id == editForm.id">
+							<input type="text" v-model="editForm.name" required class="form-control" />
+						</td>
+						<td v-else>{{row['name']}}</td>
+
+						<td v-if="row.id == editForm.id">
+							<input type="number" v-model="editForm.year" required class="form-control" />
+						</td>
+						<td v-else>{{row['done']}}</td>
+
+						<!-- <td>
+							<button v-on:click.prevent="saveMovie" v-if="row.id == editForm.id" class="btn btn-success btn-sm">Save</button>
+							<button v-on:click.prevent="editMovie(row)" class="btn btn-primary btn-sm">Edit</button>
+							<button v-on:click.prevent="deleteMovie(row)" class="btn btn-danger btn-sm">Delete</button>
+						</td> -->
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<script src="js/script.js"></script>
+	</body>
+</html>
