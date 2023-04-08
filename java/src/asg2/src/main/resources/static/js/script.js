@@ -18,6 +18,11 @@ var app = new Vue({
 			this.rows = json;
 		},
 
+		async reloadTodo(status, fullReload = false) {
+			if (status === 200) await this.getTodo();
+			if (fullReload) location.reload();
+		},
+
 		editTodo(row) {
 			this.editForm.id = row.id;
 			this.editForm.name = row.name;
@@ -32,8 +37,7 @@ var app = new Vue({
 			};
 
 			const post = await fetch(`http://192.168.10.182:3008/api/todo/${this.editForm.id}`, settings);
-			await this.reloadRow(post.status);
-			location.reload();
+			await this.reloadTodo(post.status, true);
 		},
 
 		async deleteTodo(row) {
@@ -42,15 +46,7 @@ var app = new Vue({
 			};
 
 			const del = await fetch(`http://192.168.10.182:3008/api/todo/${row.id}`, settings);
-			await this.reloadRow(del.status);
-		},
-
-		async reloadRow(status) {
-			if (status === 200) {
-				const res = await fetch("http://192.168.10.182:3008/api/todo");
-				const json = await res.json();
-				this.rows = json;
-			}
+			await this.reloadTodo(del.status, false);
 		},
 	},
 });
