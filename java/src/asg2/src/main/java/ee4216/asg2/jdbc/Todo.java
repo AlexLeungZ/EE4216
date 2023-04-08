@@ -5,6 +5,7 @@ public class Todo {
     private String name;
     private Boolean done;
 
+    // Data structure of todo list
     public Todo(int id, String name, Boolean done) {
         this.id = id;
         this.name = name;
