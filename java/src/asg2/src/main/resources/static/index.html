@@ -27,15 +27,15 @@
 						<td v-else>{{row['name']}}</td>
 
 						<td v-if="row.id == editForm.id">
-							<input type="number" v-model="editForm.year" required class="form-control" />
+							<input type="boolean" v-model="editForm.done" required class="form-control" />
 						</td>
 						<td v-else>{{row['done']}}</td>
 
-						<!-- <td>
-							<button v-on:click.prevent="saveMovie" v-if="row.id == editForm.id" class="btn btn-success btn-sm">Save</button>
-							<button v-on:click.prevent="editMovie(row)" class="btn btn-primary btn-sm">Edit</button>
-							<button v-on:click.prevent="deleteMovie(row)" class="btn btn-danger btn-sm">Delete</button>
-						</td> -->
+						<td>
+							<button v-on:click.prevent="saveTodo" v-if="row.id == editForm.id" class="btn btn-success btn-sm">Save</button>
+							<button v-on:click.prevent="editTodo(row)" class="btn btn-primary btn-sm">Edit</button>
+							<button v-on:click.prevent="deleteTodo(row)" class="btn btn-danger btn-sm">Delete</button>
+						</td>
 					</tr>
 				</tbody>
 			</table>
