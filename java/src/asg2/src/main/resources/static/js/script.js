@@ -18,14 +18,17 @@ var app = new Vue({
 		await this.getTodo();
 	},
 	computed: {
+		// Get row by slicing with start and end
 		displayedTask: function () {
 			const start = (this.curPage - 1) * this.itemLim;
 			const end = start + this.itemLim;
 			return this.rows.slice(start, end);
 		},
+		// Get total number of pages
 		pageCount: function () {
 			return Math.ceil(this.rows.length / this.itemLim);
 		},
+		// Get page number
 		pageNumbers: function () {
 			const numbers = [];
 			for (let i = 1; i <= this.pageCount; i++) numbers.push(i);
@@ -33,6 +36,7 @@ var app = new Vue({
 		},
 	},
 	methods: {
+		// Get all tasks, filter by done status if needed
 		async getTodo() {
 			const res = await fetch("http://192.168.10.182:3008/api/todo");
 			const json = await res.json();
@@ -40,20 +44,24 @@ var app = new Vue({
 			this.rows.forEach((row) => (row.status = row.done ? "Completed" : "Pending"));
 		},
 
+		// Reload the list
 		async reloadTodo(status, fullReload = false) {
 			if (status === 200) await this.getTodo();
 			if (fullReload) location.reload();
 		},
 
+		// Show or hide task by done status
 		async toggleHideDone() {
 			this.reloadTodo(200, false);
 			this.hideDone = !this.hideDone;
 		},
 
+		// Set the current page number
 		setPage(pageNumber) {
 			this.curPage = pageNumber;
 		},
 
+		// Edit task
 		editTodo(row) {
 			this.editForm.id = row.id;
 			this.editForm.name = row.name;
@@ -61,6 +69,7 @@ var app = new Vue({
 			this.editForm.timer = row.timer;
 		},
 
+		// Add new task
 		async addTodo(name) {
 			const settings = {
 				method: "POST",
@@ -72,6 +81,7 @@ var app = new Vue({
 			await this.reloadTodo(post.status, false);
 		},
 
+		// Toggle done status of task
 		async toggleStatus(row) {
 			const settings = {
 				method: "PUT",
@@ -83,6 +93,7 @@ var app = new Vue({
 			await this.reloadTodo(put.status, false);
 		},
 
+		// Save task
 		async saveTodo() {
 			const settings = {
 				method: "PUT",
@@ -94,6 +105,7 @@ var app = new Vue({
 			await this.reloadTodo(put.status, true);
 		},
 
+		// Delete task
 		async deleteTodo(row) {
 			const settings = {
 				method: "DELETE",

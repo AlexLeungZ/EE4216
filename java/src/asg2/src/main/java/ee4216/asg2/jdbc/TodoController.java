@@ -23,8 +23,8 @@ public class TodoController {
 
     // API for checking server status
     @GetMapping("/status")
-    public String status() {
-        return "API is up";
+    public Boolean status() {
+        return true;
     }
 
     // API for return all todo list items as JSON
