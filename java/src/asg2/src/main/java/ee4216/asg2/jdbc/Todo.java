@@ -4,12 +4,14 @@ public class Todo {
     private int id;
     private String name;
     private Boolean done;
+    private int timer;
 
     // Data structure of todo list
-    public Todo(int id, String name, Boolean done) {
+    public Todo(int id, String name, Boolean done, int timer) {
         this.id = id;
         this.name = name;
         this.done = done;
+        this.timer = timer;
     }
 
     public int getId() {
@@ -24,6 +26,10 @@ public class Todo {
         return done;
     }
 
+    public int getTimer() {
+        return timer;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -34,5 +40,9 @@ public class Todo {
 
     public void setDone(Boolean done) {
         this.done = done;
+    }
+
+    public void setTimer(int timer) {
+        this.timer = timer;
     }
 }

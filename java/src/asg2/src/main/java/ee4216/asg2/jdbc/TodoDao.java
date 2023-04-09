@@ -16,7 +16,8 @@ public class TodoDao {
         return jdbcTemplate.query(sql, (rs, rowNum) -> new Todo(
                 rs.getInt("id"),
                 rs.getString("name"),
-                rs.getBoolean("done")));
+                rs.getBoolean("done"),
+                rs.getInt("timer")));
     }
 
     // Get todo list item by id
@@ -25,20 +26,21 @@ public class TodoDao {
         return jdbcTemplate.queryForObject(sql, (rs, rowNum) -> new Todo(
                 rs.getInt("id"),
                 rs.getString("name"),
-                rs.getBoolean("done")),
+                rs.getBoolean("done"),
+                rs.getInt("timer")),
                 id);
     }
 
     // Add new todo list item
     public void addTodo(Todo todo) {
         String sql = "INSERT INTO TODO (name, done) VALUES (?, ?)";
-        jdbcTemplate.update(sql, todo.getName(), todo.getDone());
+        jdbcTemplate.update(sql, todo.getName(), false);
     }
 
     // Update todo list item by id
     public void updateById(Todo todo) {
-        String sql = "UPDATE TODO SET name = ?, done = ? WHERE id = ?";
-        jdbcTemplate.update(sql, todo.getName(), todo.getDone(), todo.getId());
+        String sql = "UPDATE TODO SET name = ?, done = ?, timer = ? WHERE id = ?";
+        jdbcTemplate.update(sql, todo.getName(), todo.getDone(), todo.getTimer(), todo.getId());
     }
 
     // Delete todo list item by id
