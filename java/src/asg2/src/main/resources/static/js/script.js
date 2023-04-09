@@ -11,9 +11,26 @@ var app = new Vue({
 		hideDone: false,
 		showInput: false,
 		newName: "",
+		curPage: 1,
+		itemLim: 5,
 	},
 	async mounted() {
 		await this.getTodo();
+	},
+	computed: {
+		displayedTask: function () {
+			const start = (this.curPage - 1) * this.itemLim;
+			const end = start + this.itemLim;
+			return this.rows.slice(start, end);
+		},
+		pageCount: function () {
+			return Math.ceil(this.rows.length / this.itemLim);
+		},
+		pageNumbers: function () {
+			const numbers = [];
+			for (let i = 1; i <= this.pageCount; i++) numbers.push(i);
+			return numbers;
+		},
 	},
 	methods: {
 		async getTodo() {
@@ -31,6 +48,10 @@ var app = new Vue({
 		async toggleHideDone() {
 			this.reloadTodo(200, false);
 			this.hideDone = !this.hideDone;
+		},
+
+		setPage(pageNumber) {
+			this.curPage = pageNumber;
 		},
 
 		editTodo(row) {

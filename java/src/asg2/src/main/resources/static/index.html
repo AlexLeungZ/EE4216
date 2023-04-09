@@ -37,7 +37,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="row in rows">
+					<tr v-for="row in displayedTask">
+						<!-- <tr v-for="row in rows"> -->
 						<th scope="row">{{row['id']}}</th>
 						<td v-if="row.id == editForm.id">
 							<input type="text" v-model="editForm.name" required class="form-control" />
@@ -54,6 +55,21 @@
 					</tr>
 				</tbody>
 			</table>
+			<div class="btn-toolbar" role="toolbar">
+				<div class="btn-group" role="group">
+					<button :disabled="curPage === 1" v-on:click.prevent="setPage(1)" class="btn btn-secondary">First</button>
+					<button :disabled="curPage === 1" v-on:click.prevent="setPage(curPage - 1)" class="btn btn-secondary">Prev</button>
+				</div>
+				<div class="btn-group" role="group">
+					<div v-for="pageNumber in pageNumbers" :key="pageNumber">
+						<button v-on:click.prevent="setPage(pageNumber)" class="btn btn-success">{{pageNumber}}</button>
+					</div>
+				</div>
+				<div class="btn-group" role="group">
+					<button :disabled="curPage === pageCount" v-on:click.prevent="setPage(curPage + 1)" class="btn btn-secondary">Next</button>
+					<button :disabled="curPage === pageCount" v-on:click.prevent="setPage(pageCount)" class="btn btn-secondary">Last</button>
+				</div>
+			</div>
 		</div>
 
 		<!-- JS Script -->
