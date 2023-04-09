@@ -26,25 +26,26 @@
 				</div>
 			</div>
 
-			<table class="table table-striped">
+			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>Item</th>
-						<th>Status</th>
-						<th>Timer</th>
+						<th scope="col">🏗️ ID</th>
+						<th scope="col">🚧 Item</th>
+						<th scope="col">💻 Status</th>
+						<!-- <th scope="col">Timer</th> -->
+						<th scope="col" class="table-tools">Settings 🛠️</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="row in rows">
-						<td>{{row['id']}}</td>
+						<th scope="row">{{row['id']}}</th>
 						<td v-if="row.id == editForm.id">
 							<input type="text" v-model="editForm.name" required class="form-control" />
 						</td>
 						<td v-else>{{row['name']}}</td>
 						<td>{{row['status']}}</td>
-						<td>{{row['timer']}}</td>
-						<td>
+						<!-- <td>{{row['timer']}}</td> -->
+						<td class="table-tools">
 							<button v-on:click.prevent="saveTodo" v-if="row.id == editForm.id" class="btn btn-success btn-sm">Save</button>
 							<button v-on:click.prevent="toggleStatus(row)" class="btn btn-info btn-sm">Done?</button>
 							<button v-on:click.prevent="editTodo(row)" class="btn btn-warning btn-sm">Edit</button>
